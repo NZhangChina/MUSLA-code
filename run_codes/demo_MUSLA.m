@@ -40,7 +40,7 @@ else
     Parameter.k_neigh = 15;  % number of neighbors to determine the initial graph of A
 end
 Parameter.lambda_0_determined = 0;
-Parameter.islocal = 1; % islocal的值为1: only update the similarities of the k neighbor pairs, faster; 值为0: update all the similarities
+Parameter.islocal = 1; % islocal碌脛脰碌脦陋1: only update the similarities of the k neighbor pairs, faster; 脰碌脦陋0: update all the similarities
 Num_iter = 30;
 Parameter.sigma1 = 1; % parameter in spectral kernel
 Parameter.sigma2 = 1; % parameter in shapelets' similarity
@@ -85,7 +85,7 @@ while gap>Parameter.epsilon && wh_time<Max_iter
     % update L_A_tp1;
     [L_A_tp1,A_tp1,temp_A0_tp1,Y_tp1,distX_tp1,Wv,Parameter] = update_MUSLA_AY(X_tp1,Parameter,Num_iter); % update L_G_tp1, the Laplacian matrix of similarity matrix G of time series. 
     for Rj_i=1:Parameter.R
-        [SS_tp1{Rj_i,1},XS_tp1{Rj_i,1,SSij_tp1_sil{Rj_i,1},Parameter] = shapelet_similarity(S_tp1{Rj_i,1},Parameter); % update shapelets similarity matrix H_tp1;
+        [SS_tp1{Rj_i,1},XS_tp1{Rj_i,1},SSij_tp1_sil{Rj_i,1},Parameter] = shapelet_similarity(S_tp1{Rj_i,1},Parameter); % update shapelets similarity matrix H_tp1;
     end
     F_tp1 = function_value_MUSLA_Simplify(X_tp1,distX_tp1,Y_tp1,L_A_tp1,A_tp1,SS_tp1,Parameter); % calculate the value of objective function;
     gap = F_t-F_tp1; 
